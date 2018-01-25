@@ -28,8 +28,8 @@ class SupportsTableSeeder extends Seeder
             'selected_project_id' => 1
         ]);
         User::create([ // 5
-            'name' => 'Soporte S1.1',
-            'email' => 'support11@gmail.com',
+            'name' => 'Soporte S1 B',
+            'email' => 'support1B@gmail.com',
             'password' => bcrypt('123123'),
             'role' => 1,
             'selected_project_id' => 1
