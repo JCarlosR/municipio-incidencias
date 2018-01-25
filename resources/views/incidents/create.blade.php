@@ -5,6 +5,13 @@
     <div class="panel-heading">Dashboard</div>
 
     <div class="panel-body">
+        @if (session('notification'))
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ session('notification') }}
+            </div>
+        @endif
+
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>

@@ -26,7 +26,7 @@
 					<tbody id="dashboard_my_incidents">
 						@foreach ($my_incidents as $incident)
 							<tr>
-								<td>
+								<td align="center">
 									<a href="/ver/{{ $incident->id }}">
 										{{ $incident->id }}
 									</a>
@@ -63,7 +63,7 @@
 					<tbody id="dashboard_pending_incidents">
 						@foreach ($pending_incidents as $incident)
 							<tr>
-								<td>
+								<td align="center">
 									<a href="/ver/{{ $incident->id }}">
 										{{ $incident->id }}
 									</a>
@@ -74,8 +74,8 @@
 								<td>{{ $incident->created_at }}</td>
 								<td>{{ $incident->title_short }}</td>
 								<td>
-									<a href="" class="btn btn-primary btn-sm">
-										Atender
+									<a href="/ver/{{ $incident->id }}" class="btn btn-primary btn-sm">
+										Ver
 									</a>
 								</td>
 							</tr>
@@ -106,7 +106,7 @@
 					<tbody id="dashboard_by_me">
 						@foreach ($incidents_by_me as $incident)
 							<tr>
-								<td>
+								<td align="center">
 									<a href="/ver/{{ $incident->id }}">
 										{{ $incident->id }}
 									</a>

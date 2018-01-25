@@ -47,7 +47,7 @@ class IncidentController extends Controller
 
         $incident->save();
 
-        return back();
+        return back()->with('notification', 'Incidencia registrada correctamente.');
     }
 
     public function edit($id)

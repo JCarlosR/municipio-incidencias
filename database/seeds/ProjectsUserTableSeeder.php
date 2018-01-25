@@ -23,5 +23,11 @@ class ProjectsUserTableSeeder extends Seeder
         	'user_id' => 4,
         	'level_id' => 2
 		]);
+
+        ProjectUser::create([
+            'project_id' => 1,
+            'user_id' => 5,
+            'level_id' => 1
+        ]);
     }
 }
