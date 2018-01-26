@@ -31,12 +31,12 @@
                                 {{ $count_days == 1 ? 'día' : 'días' }}
                             @endif
                             @if ($count_hours > 0)
-                                ,
+                                {{ $count_days > 0 ? ',' : '' }}
                                 {{ $count_hours }}
                                 {{ $count_hours == 1 ? 'hora' : 'horas' }}
                             @endif
                             @if ($count_minutes > 0)
-                                ,
+                                {{ $count_minutes > 0 ? ',' : '' }}
                                 {{ $count_minutes }}
                                 {{ $count_minutes == 1 ? 'minuto' : 'minutos' }}
                             @endif
@@ -63,7 +63,7 @@
     </div>
 </div>
 <div class="pull-right">
-    <a href="/home" class="btn btn-default">Volver</a>
+    <a href="/ver/{{ $incident->id }}" class="btn btn-default">Volver</a>
     <button onclick="printDiv('printableArea')" class="btn btn-success waves-effect waves-light"><i class="glyphicon glyphicon-print"></i> Imprimir</button>
 </div>
 @endsection

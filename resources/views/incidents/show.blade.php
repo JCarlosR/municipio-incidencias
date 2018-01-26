@@ -88,11 +88,13 @@
         <a href="/incidencia/{{ $incident->id }}/derivar" class="btn btn-danger btn-sm" id="incident_btn_derive">
             Derivar al siguiente nivel
         </a>
-        @endif  
+        @endif
 
-        <a href="/vista/{{ $incident->id }}" class="btn btn-default btn-sm pull-right">
-            Vista de impresión
-        </a>
+        @if (auth()->user()->id == $incident->client_id)
+            <a href="/vista/{{ $incident->id }}" class="btn btn-default btn-sm pull-right">
+                Vista de impresión
+            </a>
+        @endif
     </div>
 </div>
 
