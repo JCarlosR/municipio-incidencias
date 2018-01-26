@@ -90,7 +90,7 @@
         </a>
         @endif
 
-        @if (auth()->user()->id == $incident->client_id)
+        @if (auth()->user()->id == $incident->client_id && $incident->active)
             <a href="/vista/{{ $incident->id }}" class="btn btn-default btn-sm pull-right">
                 Vista de impresión
             </a>
