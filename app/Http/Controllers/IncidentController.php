@@ -55,7 +55,7 @@ class IncidentController extends Controller
         $count_days = $count_hours = $count_minutes = 0;
         $incident = Incident::findOrFail($id);
         $project_id = $incident->project_id;
-        $incident_count = Incident::where('project_id', $project_id)->where('support_id', NULL)->count();
+        $incident_count = Incident::where('project_id', $project_id)->where('support_id', NULL)->where('active', 1)->count();
         $project = Project::find($project_id);
         foreach($project->levels as $level){
             $count_days = $count_days + $level->days;
