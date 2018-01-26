@@ -26,22 +26,19 @@
                         <td id="incident_key">{{ $incident->id }}</td>
                         <td id="incident_project">{{ $incident->client->name }}</td>
                         <td id="incident_category">
-                            @if( $count_days == 0)
-                            @else
+                            @if ($count_days > 0)
                                 {{ $count_days }}
-                                @if ($count_days == 1) día @else días @endif
+                                {{ $count_days == 1 ? 'día' : 'días' }}
                             @endif
-                            @if( $count_hours == 0)
-                            @else
-                                @if($count_days == 0) @else , @endif
+                            @if ($count_hours > 0)
+                                ,
                                 {{ $count_hours }}
-                                @if ($count_hours == 1) hora @else horas @endif
+                                {{ $count_hours == 1 ? 'hora' : 'horas' }}
                             @endif
-                            @if( $count_minutes == 0)
-                            @else
-                                @if($count_hours == 0 && $count_days == 0) @else , @endif
+                            @if ($count_minutes > 0)
+                                ,
                                 {{ $count_minutes }}
-                                @if ($count_minutes == 1) minuto @else minutos @endif
+                                {{ $count_minutes == 1 ? 'minuto' : 'minutos' }}
                             @endif
                         </td>
                         <td id="incident_created_at">{{ $incident->project->name }}</td>
