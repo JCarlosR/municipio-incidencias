@@ -33,12 +33,14 @@
                             @endif
                             @if( $count_hours == 0)
                             @else
-                               , {{ $count_hours }}
+                                @if($count_days == 0) @else , @endif
+                                {{ $count_hours }}
                                 @if ($count_hours == 1) hora @else horas @endif
                             @endif
                             @if( $count_minutes == 0)
                             @else
-                                , {{ $count_minutes }}
+                                @if($count_hours == 0 && $count_days == 0) @else , @endif
+                                {{ $count_minutes }}
                                 @if ($count_minutes == 1) minuto @else minutos @endif
                             @endif
                         </td>

@@ -231,19 +231,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <p>Días</p>
-                                <input type="number" min="0" name="days" placeholder="" class="form-control">
+                                <input type="number" min="0" name="days" placeholder="" class="form-control" value="0">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <p>Horas</p>
-                                <input type="number" min="0" max="23" name="hours" placeholder="" class="form-control">
+                                <input type="number" min="0" max="23" name="hours" placeholder="" class="form-control" value="0">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <p>Minutos</p>
-                                <input type="number" min="0" max="59" name="minutes" placeholder="" class="form-control">
+                                <input type="number" min="0" max="59" name="minutes" placeholder="" class="form-control" value="0">
                             </div>
                         </div>
                     </div>
