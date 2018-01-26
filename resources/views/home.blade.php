@@ -101,7 +101,7 @@
 							<th>Fecha creación</th>
 							<th>Título</th>
 							<th>Responsable</th>
-							<th></th>
+							<th>Ticket</th>
 						</tr>
 					</thead>
 					<tbody id="dashboard_by_me">
@@ -121,7 +121,7 @@
 									{{ $incident->support_id ? $incident->support->name : 'Sin asignar' }}
 								</td>
 								<td>
-									<a href="/vista/{{ $incident->id }}">Imprimir</a>
+									<a href="/vista/{{ $incident->id }}" class="btn btn-sm btn-success">Ver</a>
 								</td>
 							</tr>
 						@endforeach
