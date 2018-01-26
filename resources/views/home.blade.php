@@ -108,7 +108,7 @@
 						@foreach ($incidents_by_me as $incident)
 							<tr>
 								<td align="center">
-									<a href="/ver/{{ $incident->id }}">
+									<a href="/ver/{{ $incident->id }}" class="btn btn-sm btn-success">
 										{{ $incident->id }}
 									</a>
 								</td>
@@ -121,7 +121,7 @@
 									{{ $incident->support_id ? $incident->support->name : 'Sin asignar' }}
 								</td>
 								<td>
-									<a href="/vista/{{ $incident->id }}" class="btn btn-sm btn-success">Ver</a>
+									<a href="/vista/{{ $incident->id }}" class="btn btn-sm btn-info">Ver</a>
 								</td>
 							</tr>
 						@endforeach
