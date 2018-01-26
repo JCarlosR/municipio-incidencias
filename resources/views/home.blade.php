@@ -14,7 +14,7 @@
 			<div class="panel-body">
 				<table class="table table-bordered">
 					<thead>
-						<tr>
+						<tr class="active">
 							<th>Código</th>
 							<th>Categoría</th>
 							<th>Severidad</th>
@@ -50,7 +50,7 @@
 			<div class="panel-body">
 				<table class="table table-bordered">
 					<thead>
-						<tr>
+						<tr class="active">
 							<th>Código</th>
 							<th>Categoría</th>
 							<th>Severidad</th>
@@ -93,7 +93,7 @@
 			<div class="panel-body">
 				<table class="table table-bordered">
 					<thead>
-						<tr>
+						<tr class="active">
 							<th>Código</th>
 							<th>Categoría</th>
 							<th>Severidad</th>
@@ -101,6 +101,7 @@
 							<th>Fecha creación</th>
 							<th>Título</th>
 							<th>Responsable</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody id="dashboard_by_me">
@@ -118,6 +119,9 @@
 								<td>{{ $incident->title_short }}</td>
 								<td>
 									{{ $incident->support_id ? $incident->support->name : 'Sin asignar' }}
+								</td>
+								<td>
+									<a href="/vista/{{ $incident->id }}">Imprimir</a>
 								</td>
 							</tr>
 						@endforeach

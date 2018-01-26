@@ -16,18 +16,18 @@ class LevelController extends Controller
     public function store(Request $request)
     {
     	$this->validate($request, [
-    		'name' => 'required',
-            'time' => 'required'
+    		'name' => 'required'
     	], [
-    		'name.required' => 'Es necesario ingresar un nombre para el nivel.',
-            'time.required' => 'Es necesario ingresar un tiempo estimado para el nivel.'
+    		'name.required' => 'Es necesario ingresar un nombre para el nivel.'
     	]);
 
 //    	Level::create($request->all());
 
     	$level = new Level();
     	$level->name = $request->input('name');
-        $level->time = $request->input('time');
+        $level->days = $request->input('days');
+        $level->hours = $request->input('hours');
+        $level->minutes = $request->input('minutes');
         $level->project_id = $request->input('project_id');
         $level->save();
 
@@ -37,11 +37,9 @@ class LevelController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'time' => 'required'
+            'name' => 'required'
         ], [
-            'name.required' => 'Es necesario ingresar un nombre para el nivel.',
-            'time.required' => 'Es necesario ingresar un tiempo estimado para el nivel.'
+            'name.required' => 'Es necesario ingresar un nombre para el nivel.'
         ]);
 
 
@@ -49,7 +47,9 @@ class LevelController extends Controller
         
         $level = Level::find($level_id);
         $level->name = $request->input('name');
-        $level->time = $request->input('time');
+        $level->days = $request->input('days');
+        $level->hours = $request->input('hours');
+        $level->minutes = $request->input('minutes');
         $level->save();
 
         return back();

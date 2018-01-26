@@ -19,11 +19,17 @@ function editLevelModal() {
 	var level_id = $(this).data('level');
 	$('#level_id').val(level_id);
     // name
-    var level_name = $(this).parent().prev().prev().text();
+    var level_name = $(this).parent().prev().prev().prev().prev().text();
     $('#level_name').val(level_name);
     // time
-    var level_time = $(this).parent().prev().text();
-    $('#level_time').val(level_time);
+    var level_day = $(this).parent().prev().prev().prev().text();
+    $('#level_day').val(level_day);
+    // time
+    var level_hour = $(this).parent().prev().prev().text();
+    $('#level_hour').val(level_hour);
+    // time
+    var level_minute = $(this).parent().prev().text();
+    $('#level_minute').val(level_minute);
 	// show
 	$('#modalEditLevel').modal('show');
 }

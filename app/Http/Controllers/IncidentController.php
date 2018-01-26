@@ -52,16 +52,26 @@ class IncidentController extends Controller
 
     public function preview($id)
     {
-        $count_time = 0;
+        $count_days = $count_hours = $count_minutes = 0;
         $incident = Incident::findOrFail($id);
         $project_id = $incident->project_id;
         $incident_count = Incident::where('project_id', $project_id)->where('support_id', NULL)->count();
         $project = Project::find($project_id);
         foreach($project->levels as $level){
-            $count_time = $count_time + $level->time;
+            $count_days = $count_days + $level->days;
+            $count_hours = $count_hours + $level->hours;
+            $count_minutes = $count_minutes + $level->minutes;
+            if ($count_minutes >= 60){
+                $count_minutes = $count_minutes - 60;
+                $count_hours = $count_hours + 1;
+            }
+            if ($count_hours >= 24){
+                $count_hours = $count_hours - 24;
+                $count_days = $count_days + 1;
+            }
         }
 
-        return view ('incidents.preview')->with(compact('incident', 'count_time', 'incident_count'));
+        return view ('incidents.preview')->with(compact('incident', 'count_days', 'count_hours', 'count_minutes', 'incident_count'));
     }
 
     public function edit($id)
