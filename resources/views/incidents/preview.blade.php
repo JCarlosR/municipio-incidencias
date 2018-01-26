@@ -29,16 +29,16 @@
                             @if( $count_days == 0)
                             @else
                                 {{ $count_days }}
-                                @if ($count_days == 1) día : @else días : @endif
+                                @if ($count_days == 1) día @else días @endif
                             @endif
                             @if( $count_hours == 0)
                             @else
-                                {{ $count_hours }}
-                                @if ($count_hours == 1) hora : @else horas : @endif
+                               , {{ $count_hours }}
+                                @if ($count_hours == 1) hora @else horas @endif
                             @endif
                             @if( $count_minutes == 0)
                             @else
-                                {{ $count_minutes }}
+                                , {{ $count_minutes }}
                                 @if ($count_minutes == 1) minuto @else minutos @endif
                             @endif
                         </td>
