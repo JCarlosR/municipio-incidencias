@@ -18,9 +18,12 @@ function editLevelModal() {
 	// id
 	var level_id = $(this).data('level');
 	$('#level_id').val(level_id);
-	// name
-	var level_name = $(this).parent().prev().text();
-	$('#level_name').val(level_name);
+    // name
+    var level_name = $(this).parent().prev().prev().text();
+    $('#level_name').val(level_name);
+    // time
+    var level_time = $(this).parent().prev().text();
+    $('#level_time').val(level_time);
 	// show
 	$('#modalEditLevel').modal('show');
 }

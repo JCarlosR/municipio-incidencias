@@ -47,7 +47,21 @@ class IncidentController extends Controller
 
         $incident->save();
 
-        return back()->with('notification', 'Incidencia registrada correctamente.');
+        return redirect("/vista/$incident->id")->with('notification', 'Incidencia registrada correctamente.');
+    }
+
+    public function preview($id)
+    {
+        $count_time = 0;
+        $incident = Incident::findOrFail($id);
+        $project_id = $incident->project_id;
+        $incident_count = Incident::where('project_id', $project_id)->where('support_id', NULL)->count();
+        $project = Project::find($project_id);
+        foreach($project->levels as $level){
+            $count_time = $count_time + $level->time;
+        }
+
+        return view ('incidents.preview')->with(compact('incident', 'count_time', 'incident_count'));
     }
 
     public function edit($id)

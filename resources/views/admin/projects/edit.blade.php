@@ -78,19 +78,29 @@
             </div>
             <div class="col-md-6">
                 <p>Niveles</p>
-                <form action="/niveles" method="POST" class="form-inline">
+                <form action="/niveles" method="POST" class="form-group">
                     {{ csrf_field() }}
                     <input type="hidden" name="project_id" value="{{ $project->id }}">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Ingrese nombre" class="form-control">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Ingrese nombre" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="number" name="time" placeholder="tiempo (min)" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn btn-primary">Añadir</button>                    
+                    <button class="btn btn-primary">Añadir</button>
                 </form>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nivel</th>
+                            <th>Tiempo</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
@@ -99,6 +109,7 @@
                         <tr>
                             <td>N{{ $key+1 }}</td>
                             <td>{{ $level->name }}</td>
+                            <td class="text-center">{{ $level->time }}</td>
                             <td>
                                 <button type="button" class="btn btn-sm btn-primary" title="Editar" data-level="{{ $level->id }}">
                                     <span class="glyphicon glyphicon-pencil"></span>
@@ -156,7 +167,11 @@
             <div class="form-group">
                 <label for="name">Nombre del nivel</label>
                 <input type="text" class="form-control" name="name" id="level_name" value="">
-            </div>        
+            </div>
+            <div class="form-group">
+                <label for="time">Tiempo del nivel</label>
+                <input type="number" class="form-control" name="time" id="level_time" value="">
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -169,5 +184,5 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/admin/projects/edit.js"></script>
+    <script src="{{ asset('/js/admin/projects/edit.js') }}"></script>
 @endsection

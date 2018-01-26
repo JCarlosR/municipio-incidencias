@@ -16,12 +16,20 @@ class LevelController extends Controller
     public function store(Request $request)
     {
     	$this->validate($request, [
-    		'name' => 'required'
+    		'name' => 'required',
+            'time' => 'required'
     	], [
-    		'name.required' => 'Es necesario ingresar un nombre para el nivel.'
+    		'name.required' => 'Es necesario ingresar un nombre para el nivel.',
+            'time.required' => 'Es necesario ingresar un tiempo estimado para el nivel.'
     	]);
 
-    	Level::create($request->all());
+//    	Level::create($request->all());
+
+    	$level = new Level();
+    	$level->name = $request->input('name');
+        $level->time = $request->input('time');
+        $level->project_id = $request->input('project_id');
+        $level->save();
 
     	return back();
     }
@@ -29,15 +37,19 @@ class LevelController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'time' => 'required'
         ], [
-            'name.required' => 'Es necesario ingresar un nombre para el nivel.'
+            'name.required' => 'Es necesario ingresar un nombre para el nivel.',
+            'time.required' => 'Es necesario ingresar un tiempo estimado para el nivel.'
         ]);
+
 
         $level_id = $request->input('level_id');
         
         $level = Level::find($level_id);
         $level->name = $request->input('name');
+        $level->time = $request->input('time');
         $level->save();
 
         return back();

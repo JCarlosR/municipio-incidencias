@@ -31,6 +31,8 @@ Route::post('/incidencia/{id}/editar', 'IncidentController@update');
 
 Route::get('/ver/{id}', 'IncidentController@show');
 
+Route::get('/vista/{id}', 'IncidentController@preview');
+
 Route::get('/incidencia/{id}/atender', 'IncidentController@take');
 Route::get('/incidencia/{id}/resolver', 'IncidentController@solve');
 Route::get('/incidencia/{id}/abrir', 'IncidentController@open');
