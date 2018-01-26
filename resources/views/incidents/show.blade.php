@@ -89,7 +89,10 @@
             Derivar al siguiente nivel
         </a>
         @endif  
-        
+
+        <a href="/vista/{{ $incident->id }}" class="btn btn-default btn-sm pull-right">
+            Vista de impresión
+        </a>
     </div>
 </div>
 

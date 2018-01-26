@@ -101,16 +101,14 @@
 							<th>Fecha creación</th>
 							<th>Título</th>
 							<th>Responsable</th>
-							<th>Ticket</th>
+							<th>Opción</th>
 						</tr>
 					</thead>
 					<tbody id="dashboard_by_me">
 						@foreach ($incidents_by_me as $incident)
 							<tr>
-								<td align="center">
-									<a href="/ver/{{ $incident->id }}" class="btn btn-sm btn-success">
-										{{ $incident->id }}
-									</a>
+								<td class="text-center">
+									{{ $incident->id }}
 								</td>
 								<td>{{ $incident->category_name }}</td>
 								<td>{{ $incident->severity_full }}</td>
@@ -121,7 +119,9 @@
 									{{ $incident->support_id ? $incident->support->name : 'Sin asignar' }}
 								</td>
 								<td>
-									<a href="/vista/{{ $incident->id }}" class="btn btn-sm btn-info">Ver</a>
+									<a href="/ver/{{ $incident->id }}" class="btn btn-xs btn-info">
+										<i class="glyphicon glyphicon-zoom-in"></i>
+									</a>
 								</td>
 							</tr>
 						@endforeach
