@@ -108,16 +108,13 @@ class IncidentController extends Controller
         $incident = Incident::findOrFail($id);
 
         // There is a relationship between user and project?
-        $project_user = ProjectUser::where('project_id', $incident->project_id)
-                                        ->where('user_id', $user->id)->first();
+        // Is assigned to this level?
+        $assigned = ProjectUser::where('project_id', $incident->project_id)
+            ->where('user_id', $user->id)->where('level_id', $incident->level_id)->exists();
 
-        if (! $project_user)
+        if (!$assigned)
             return back();
 
-        // The level is the same?
-        if ($project_user->level_id != $incident->level_id)
-            return back();
-        
         $incident->support_id = $user->id;
         $incident->save();
 

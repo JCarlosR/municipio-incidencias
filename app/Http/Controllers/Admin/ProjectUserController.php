@@ -11,24 +11,29 @@ class ProjectUserController extends Controller
 {
     public function store(Request $request)
     {
-    	// El nivel pertenezca al proyecto.
-    	// Asegurar que el proyecto exista.
-    	// Asegurar que el nivel exista.
-    	// Asegurar que el usuario exista.
+        $rules = [
+            'project_id' => 'exists:projects,id',
+            'user_id' => 'exists:users,id',
+            'level_id' => 'exists:levels,id'
+        ];
+        $this->validate($request, $rules);
+        // Seguridad adicional:
+    	// Verificar que el nivel pertenezca al proyecto.
 
-    	$project_id = $request->input('project_id');
-    	$user_id = $request->input('user_id');
+    	$projectId = $request->input('project_id');
+    	$userId = $request->input('user_id');
+        $levelId = $request->input('level_id');
 
-		$project_user = ProjectUser::where('project_id', $project_id)
-										->where('user_id', $user_id)->first();
+		$projectLevelUser = ProjectUser::where('project_id', $projectId)
+            ->where('user_id', $userId)->where('level_id', $levelId)->first();
 
-		if ($project_user)
-			return back()->with('notification', 'El usuario ya pertenece a este proyecto.');
+		if ($projectLevelUser)
+			return back()->with('notification', 'El usuario ya pertenece a este nivel del proyecto.');
 
     	$project_user = new ProjectUser();
-    	$project_user->project_id = $project_id;
-    	$project_user->user_id = $user_id;
-    	$project_user->level_id = $request->input('level_id');
+    	$project_user->project_id = $projectId;
+    	$project_user->user_id = $userId;
+    	$project_user->level_id = $levelId;
     	$project_user->save();
 
     	return back();
