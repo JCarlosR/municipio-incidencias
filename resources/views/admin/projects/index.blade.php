@@ -37,7 +37,7 @@
                 <input type="date" name="start" class="form-control" value="{{ old('start', date('Y-m-d')) }}">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Registrar proyecto</button>
+                <button class="btn btn-primary">Registrar proceso</button>
             </div>
         </form>
 

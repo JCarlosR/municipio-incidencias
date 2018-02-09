@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="panel panel-primary">
-    <div class="panel-heading">Dashboard</div>
+    <div class="panel-heading">Tablero</div>
 
     <div class="panel-body">
         
         @if (auth()->user()->is_support)
         <div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Incidencias asignadas a mí</h3>
+				<h3 class="panel-title">Incidencias asignadas</h3>
 			</div>
 			<div class="panel-body">
 				<table class="table table-bordered">
@@ -45,7 +45,7 @@
 
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Incidencias sin asignar</h3>
+				<h3 class="panel-title">Incidencias pendientes</h3>
 			</div>
 			<div class="panel-body">
 				<table class="table table-bordered">
@@ -88,7 +88,7 @@
 
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Incidencias reportadas por mí</h3>
+				<h3 class="panel-title">Incidencias reportadas</h3>
 			</div>
 			<div class="panel-body">
 				<table class="table table-bordered">
@@ -123,6 +123,7 @@
 										<i class="glyphicon glyphicon-zoom-in"></i>
 									</a>
 								</td>
+							</tr>
 							</tr>
 						@endforeach
 					</tbody>

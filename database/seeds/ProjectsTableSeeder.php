@@ -13,13 +13,13 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         Project::create([
-        	'name' => 'Proyecto A',
-        	'description' => 'El proyecto A consiste en desarrollar un sitio web moderno.'
+        	'name' => 'Proceso A',
+        	'description' => 'El Proceso A consiste en desarrollar un sitio web moderno.'
         ]);
 
         Project::create([
-        	'name' => 'Proyecto B',
-        	'description' => 'El proyecto B consiste en desarrollar una aplicación Android.'
+        	'name' => 'Proceso B',
+        	'description' => 'El Proceso B consiste en desarrollar una aplicación Android.'
         ]);
     }
 }

@@ -20,25 +20,30 @@ class UserController extends Controller
     {
     	$rules = [
     		'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'email|max:255',
+            'document' => 'required|max:255|unique:users',
             'password' => 'required|min:6'
     	];
     	$messages = [
     		'name.required' => 'Es necesario ingresar el nombre del usuario.',
     		'name.max' => 'El nombre es demasiado extenso.',
-    		'email.required' => 'Es indispensable ingresar el e-mail del usuario.',
     		'email.email' => 'El e-mail ingresado no es válido.',
     		'email.max' => 'El e-mail es demasiado extenso.',
-    		'email.unique' => 'Este e-mail ya se encuentra en uso.',
+            'document.required' => 'Es indispensable ingresar la cédula del usuario.',
+            'document.max' => 'La cédula es demasiado extenso.',
+            'document.unique' => 'Este cédula ya se encuentra en uso.',
     		'password.required' => 'Olvidó ingresar una contraseña.',
     		'password.min' => 'La contraseña debe presentar al menos 6 caracteres.'
     	];
     	$this->validate($request, $rules, $messages);
 
     	$user = new User();
-    	$user->name = $request->input('name');
-    	$user->email = $request->input('email');
-    	$user->password = bcrypt($request->input('password'));
+        $user->name = $request->input('name');
+        $user->cellphone = $request->input('cellphone');
+        $user->email = $request->input('email');
+        $user->address = $request->input('address');
+        $user->document = $request->input('document');
+        $user->password = bcrypt($request->input('password'));
     	$user->role = 1;    	
     	$user->save();
 
@@ -59,18 +64,23 @@ class UserController extends Controller
     {
     	$rules = [
     		'name' => 'required|max:255',
+            'email' => 'email|max:255',
             'password' => 'min:6'
     	];
     	$messages = [
     		'name.required' => 'Es necesario ingresar el nombre del usuario.',
     		'name.max' => 'El nombre es demasiado extenso.',
+            'email.email' => 'El e-mail ingresado no es válido.',
+            'email.max' => 'El e-mail es demasiado extenso.',
     		'password.min' => 'La contraseña debe presentar al menos 6 caracteres.'
     	];
     	$this->validate($request, $rules, $messages);
 
     	$user = User::find($id);
-    	$user->name = $request->input('name');
-
+        $user->name = $request->input('name');
+        $user->cellphone = $request->input('cellphone');
+        $user->email = $request->input('email');
+        $user->address = $request->input('address');
     	$password = $request->input('password');
     	if ($password)
     		$user->password = bcrypt($password);

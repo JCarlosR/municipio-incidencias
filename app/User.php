@@ -46,7 +46,7 @@ class User extends Authenticatable
     public function getListOfProjectsAttribute()
     {
         if ($this->role == 1)
-            return $this->projects;
+            return $this->projects()->distinct()->get();
 
         return Project::all();
     }
@@ -62,6 +62,14 @@ class User extends Authenticatable
     public function getIsClientAttribute()
     {
         return $this->role == 2;   
+    }
+    public function getIsSupportLevelOneAttribute()
+    {
+        $level_uno = ProjectUser::where('project_id', $this->selected_project_id)
+                ->where('level_id', 1)->where('user_id', $this->id)->exists();
+        if($this->role == 1 and $level_uno)
+            return true;
+        return false;
     }
 
 }

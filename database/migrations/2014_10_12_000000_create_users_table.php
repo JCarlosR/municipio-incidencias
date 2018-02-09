@@ -17,8 +17,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
 
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->string('password');
+
+            $table->string('document')->unique(); // cédula
+            $table->string('cellphone')->nullable();
+            $table->string('address')->nullable();
 
             $table->smallInteger('role')->default(2); // 0: Admin | 1: Support | 2: Client
             $table->string('image')->nullable(); // profile photo

@@ -12,13 +12,34 @@ Route::get('/acerca-de', function () {
     return view('credits');
 });
 
-Auth::routes();
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+// Registration Routes...
+// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+// Route::post('register', 'Auth\RegisterController@register');
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/home', 'HomeController@index');
 Route::get('/seleccionar/proyecto/{id}', 'HomeController@selectProject');
 
 Route::group(['middleware' => 'auth', 'namespace' => 'User'], function (){
     Route::post('/profile/image', 'ProfileController@postImage');
+});
+
+Route::group(['middleware' => 'support', 'namespace' => 'Support'], function (){
+//clients
+    Route::get('/cliente', 'ClientController@create');
+    Route::post('/cliente', 'ClientController@store');
+    Route::get('/cliente/{id}', 'ClientController@edit');
+    Route::post('/cliente/{id}', 'ClientController@update');
+
+    Route::get('/cliente/{id}/eliminar', 'ClientController@delete');
 });
 
 // Incident
@@ -45,6 +66,9 @@ Route::post('/mensajes', 'MessageController@store');
 
 Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function () {
 
+    //Incidents
+    Route::get('/incidencias', 'IncidentController@index');
+    Route::get('/incidencia/{id}', 'IncidentController@show');
     // User
     Route::get('/usuarios', 'UserController@index');
     Route::post('/usuarios', 'UserController@store');

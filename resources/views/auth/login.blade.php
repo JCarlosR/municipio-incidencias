@@ -7,15 +7,15 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
             {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">E-mail</label>
+            <div class="form-group{{ $errors->has('document') ? ' has-error' : '' }}">
+                <label for="document" class="col-md-4 control-label">Cédula</label>
 
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                    <input id="document" type="text" class="form-control" name="document" value="{{ old('document') }}" required autofocus>
 
-                    @if ($errors->has('email'))
+                    @if ($errors->has('document'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $errors->first('document') }}</strong>
                         </span>
                     @endif
                 </div>

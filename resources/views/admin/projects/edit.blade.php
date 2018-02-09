@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="panel panel-primary">
-    <div class="panel-heading">Editar proyecto</div>
+    <div class="panel-heading">Editar proceso</div>
 
     <div class="panel-body">
         @if (session('notification'))
@@ -37,7 +37,7 @@
                 <input type="date" name="start" class="form-control" value="{{ old('start', $project->start) }}">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Guardar proyecto</button>
+                <button class="btn btn-primary">Guardar proceso</button>
             </div>
         </form>
     </div>

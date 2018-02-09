@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="panel panel-primary">
-    <div class="panel-heading">Usuarios</div>
+    <div class="panel-heading">Registrar cliente</div>
 
     <div class="panel-body">
         @if (session('notification'))
@@ -20,10 +20,8 @@
                 </ul>
             </div>
         @endif
-
         <form action="" method="POST">
             {{ csrf_field() }}
-
             <label>Datos personales</label>
             <div class="row">
                 <div class="col-sm-8">
@@ -63,33 +61,33 @@
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Registrar usuario</button>
+                <button class="btn btn-primary">Registrar cliente</button>
             </div>
         </form>
 
         <table class="table table-bordered">
             <thead>
-                <tr>
-                    <th>Cédula</th>
-                    <th>Nombre</th>
-                    <th>Opciones</th>
-                </tr>
+            <tr>
+                <th>Nombre</th>
+                <th>Cédula</th>
+                <th>Opciones</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+            @foreach ($clients as $client)
                 <tr>
-                    <td>{{ $user->document }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $client->name }}</td>
+                    <td>{{ $client->document }}</td>
                     <td>
-                        <a href="/usuario/{{ $user->id }}" class="btn btn-sm btn-primary" title="Editar">
+                        <a href="/cliente/{{ $client->id }}" class="btn btn-sm btn-primary" title="Editar">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        <a href="/usuario/{{ $user->id }}/eliminar" class="btn btn-sm btn-danger" title="Dar de baja">
+                        <a href="/cliente/{{ $client->id }}/eliminar" class="btn btn-sm btn-danger" title="Dar de baja">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     </td>
                 </tr>
-                @endforeach
+            @endforeach
             </tbody>
         </table>
     </div>

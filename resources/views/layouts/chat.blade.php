@@ -1,6 +1,6 @@
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title">Discusión</h3>
+        <h3 class="panel-title">Comentarios</h3>
     </div>
     <div class="panel-body">
         @if (count($errors) > 0)

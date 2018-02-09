@@ -25,7 +25,7 @@
 		<ul class="nav nav-pills nav-stacked">
 			@if (auth()->check())
 				<li @if(request()->is('home')) class="active" @endif>
-					<a href="/home">Dashboard</a>
+					<a href="/home">Tablero</a>
 				</li>
 
 				{{-- @if (! auth()->user()->is_client) --}}
@@ -34,9 +34,17 @@
 				{{-- </li> --}}
 				{{-- @endif --}}
 
-				<li @if(request()->is('reportar')) class="active" @endif>
-					<a href="/reportar">Reportar incidencia</a>
-				</li>
+				@if (auth()->user()->is_support)
+					<li @if(request()->is('cliente')) class="active" @endif>
+						<a href="/cliente">Registrar cliente</a>
+					</li>
+				@endif
+
+				@if (auth()->user()->is_support_level_one)
+					<li @if(request()->is('reportar')) class="active" @endif>
+						<a href="/reportar">Reportar incidencia</a>
+					</li>
+				@endif
 
 				@if (auth()->user()->is_admin)
 				<li role="presentation" class="dropdown">
@@ -44,8 +52,9 @@
 						Administración <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
+						<li><a href="/incidencias">Incidencias</a></li>
 						<li><a href="/usuarios">Usuarios</a></li>
-						<li><a href="/proyectos">Proyectos</a></li>
+						<li><a href="/proyectos">Procesos</a></li>
 						<li><a href="/config">Configuración</a></li>
 					</ul>
 				</li>

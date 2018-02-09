@@ -36,6 +36,10 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="document">Cliente (cédula)</label>
+                <input type="text" name="document" class="form-control" value="{{ old('document', $incident->client->document) }}" disabled>
+            </div>
+            <div class="form-group">
                 <label for="title">Título</label>
                 <input type="text" name="title" class="form-control" value="{{ old('title', $incident->title) }}">
             </div>

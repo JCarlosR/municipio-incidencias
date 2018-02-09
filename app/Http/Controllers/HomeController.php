@@ -36,7 +36,7 @@ class HomeController extends Controller
                 }
             }
 
-            $incidents_by_me = Incident::where('client_id', $user->id)
+            $incidents_by_me = Incident::where('creator_id', $user->id)
                                         ->where('project_id', $selected_project_id)->get();
         } else {
             $my_incidents = [];

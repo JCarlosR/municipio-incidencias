@@ -7,9 +7,10 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
+    protected $document = 'document';
     public function login(Request $request)
     {
-    	$email = $request->input('email');
+    	$email = $request->input('document');
     	$password = $request->input('password');
 
     	$data['error'] = true;

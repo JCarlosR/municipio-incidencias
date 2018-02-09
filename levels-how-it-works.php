@@ -15,7 +15,7 @@ project_id
 user_id
 level_id
 
-<?php
+
 
 // Incidencias asignadas a mí
 Incident::where('project_id', 1)->where('support_id', auth()->user()->id)->get()

@@ -28,7 +28,7 @@ class ProjectUserController extends Controller
             ->where('user_id', $userId)->where('level_id', $levelId)->first();
 
 		if ($projectLevelUser)
-			return back()->with('notification', 'El usuario ya pertenece a este nivel del proyecto.');
+			return back()->with('notification', 'El usuario ya pertenece a este nivel del proceso.');
 
     	$project_user = new ProjectUser();
     	$project_user->project_id = $projectId;

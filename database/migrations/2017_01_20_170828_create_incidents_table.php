@@ -37,6 +37,9 @@ class CreateIncidentsTable extends Migration
             $table->integer('support_id')->unsigned()->nullable();
             $table->foreign('support_id')->references('id')->on('users');
 
+            $table->integer('creator_id')->unsigned();
+            $table->foreign('creator_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="panel panel-primary">
-    <div class="panel-heading">Dashboard</div>
+    <div class="panel-heading">Incidencia</div>
 
     <div class="panel-body">
         @if (session('notification'))
@@ -15,7 +15,7 @@
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>Proyecto</th>
+                    <th>Proceso</th>
                     <th>Categoría</th>
                     <th>Fecha de envío</th>
                 </tr>
@@ -69,20 +69,26 @@
         </a>
         @endif
 
-        @if (auth()->user()->id == $incident->client_id)
+
             @if ($incident->active)
-                <a href="/incidencia/{{ $incident->id }}/resolver" class="btn btn-info btn-sm" id="incident_btn_solve">
-                    Marcar como resuelto
-                </a>
-                <a href="/incidencia/{{ $incident->id }}/editar" class="btn btn-success btn-sm" id="incident_btn_edit">
-                    Editar incidencia
-                </a>
+                @if($take_incident)
+                    <a href="/incidencia/{{ $incident->id }}/resolver" class="btn btn-info btn-sm" id="incident_btn_solve">
+                        Marcar como resuelto
+                    </a>
+                @endif
+                @if (auth()->user()->id == $incident->creator_id)
+                    <a href="/incidencia/{{ $incident->id }}/editar" class="btn btn-success btn-sm" id="incident_btn_edit">
+                        Editar incidencia
+                    </a>
+                @endif
             @else
-                <a href="/incidencia/{{ $incident->id }}/abrir" class="btn btn-info btn-sm" id="incident_btn_open">
-                    Volver a abrir incidencia
-                </a>
+                @if($take_incident)
+                    <a href="/incidencia/{{ $incident->id }}/abrir" class="btn btn-info btn-sm" id="incident_btn_open">
+                        Volver a abrir incidencia
+                    </a>
+                @endif
             @endif
-        @endif
+
 
         @if (auth()->user()->id == $incident->support_id && $incident->active)
         <a href="/incidencia/{{ $incident->id }}/derivar" class="btn btn-danger btn-sm" id="incident_btn_derive">
@@ -90,7 +96,7 @@
         </a>
         @endif
 
-        @if (auth()->user()->id == $incident->client_id && $incident->active)
+        @if (auth()->user()->id == $incident->creator_id && $incident->active)
             <a href="/vista/{{ $incident->id }}" class="btn btn-default btn-sm pull-right">
                 Vista de impresión
             </a>
@@ -99,4 +105,37 @@
 </div>
 
     @include('layouts.chat')
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h5>Historial</h5>
+        </div>
+        <div class="panel-body">
+            <p>
+                <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Ver historial de cambios
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-block">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr class="active">
+                            <th>Descripción</th>
+                            <th>Fecha y Hora</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($incident_histories as $incident_history)
+                            <tr>
+                                <td>{{ $incident_history->description }}</td>
+                                <td>{{ $incident_history->created_at }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

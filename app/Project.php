@@ -16,7 +16,7 @@ class Project extends Model
     ];
 
     public static $messages = [
-        'name.required' => 'Es necesario ingresar un nombre para el proyecto.',
+        'name.required' => 'Es necesario ingresar un nombre para el proceso.',
         'start.date' => 'La fecha no tiene un formato adecuado.'
     ];
 

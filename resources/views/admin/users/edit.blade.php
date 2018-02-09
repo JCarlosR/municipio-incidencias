@@ -24,17 +24,43 @@
         <form action="" method="POST">
             {{ csrf_field() }}
 
+            <label>Datos personales</label>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" name="name" class="form-control" value="{{ old('name', $user->name) }}">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="cellphone">Celular</label>
+                        <input type="number" name="cellphone" class="form-control" value="{{ old('cellphone', $user->cellphone) }}">
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" class="form-control" readonly value="{{ old('email', $user->email) }}">
+                <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}">
             </div>
             <div class="form-group">
-                <label for="name">Nombre</label>
-                <input type="text" name="name" class="form-control" value="{{ old('name', $user->name) }}">
+                <label for="address">Dirección</label>
+                <input type="text" name="address" class="form-control" value="{{ old('address', $user->address) }}">
             </div>
-            <div class="form-group">
-                <label for="password">Contraseña <em>Ingresar solo si se desea modificar</em></label>
-                <input type="text" name="password" class="form-control" value="{{ old('password') }}">
+            <label>Datos de la cuenta</label>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="document">Cédula</label>
+                        <input type="text" name="document" class="form-control" value="{{ old('document', $user->document) }}" disabled>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="password">Contraseña <em>Ingresar solo si se desea modificar</em></label>
+                        <input type="text" name="password" class="form-control" value="{{ old('password') }}">
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">Guardar usuario</button>
@@ -47,7 +73,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <select name="project_id" class="form-control" id="select-project">
-                        <option value="">Seleccione proyecto</option>
+                        <option value="">Seleccione proceso</option>
                         @foreach ($projects as $project)
                             <option value="{{ $project->id }}">{{ $project->name }}</option>
                         @endforeach
@@ -59,16 +85,16 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-primary btn-block">Asignar proyecto</button>
+                    <button class="btn btn-primary btn-block">Asignar proceso</button>
                 </div>
             </div>
         </form>
         
-        <p>Proyectos asignados</p>
+        <p>Procesos asignados</p>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Proyecto</th>
+                    <th>Proceso</th>
                     <th>Nivel</th>
                     <th>Opciones</th>
                 </tr>

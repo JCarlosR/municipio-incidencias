@@ -26,15 +26,22 @@ class LevelsTableSeeder extends Seeder
             'minutes' => 30,
         	'project_id' => 1
     	]);
+        Level::create([ // 3
+            'name' => 'Visita a la central',
+            'days' => 1,
+            'hours' => 10,
+            'minutes' => 30,
+            'project_id' => 1
+        ]);
 
-    	Level::create([ // 3
+    	Level::create([ // 4
         	'name' => 'Mesa de ayuda',
             'days' => 1,
             'hours' => 10,
             'minutes' => 30,
         	'project_id' => 2
     	]);
-    	Level::create([ // 4
+    	Level::create([ // 5
         	'name' => 'Consulta especializada',
             'days' => 1,
             'hours' => 10,
