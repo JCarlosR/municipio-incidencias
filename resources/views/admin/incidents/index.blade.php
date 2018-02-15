@@ -20,56 +20,57 @@
                 </ul>
             </div>
         @endif
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <select class="form-control" name="state">
-                    <option value="" >Buscar por estado</option>
-                    <option value="Resuelto" @if($searchState == 'Resuelto') selected @endif>Resuelto</option>
-                    <option value="Asignado" @if($searchState == 'Asignado') selected @endif>Asignado</option>
-                    <option value="Pendiente" @if($searchState == 'Pendiente') selected @endif>Pendiente</option>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <select class="form-control" name="state">
+                        <option value="" >Buscar por estado</option>
+                        <option value="Resuelto" @if($searchState == 'Resuelto') selected @endif>Resuelto</option>
+                        <option value="Asignado" @if($searchState == 'Asignado') selected @endif>Asignado</option>
+                        <option value="Pendiente" @if($searchState == 'Pendiente') selected @endif>Pendiente</option>
 
-                </select>
-            </div>
-            <button type="submit" class="btn btn-default">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </form>
-        <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-                <input type="text" name="document" class="form-control" placeholder="Buscar por cédula" value="{{ $searchIncident }}">
-            </div>
-            <button type="submit" class="btn btn-default">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </form>
-        <table class="table table-bordered">
-            <thead>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </form>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" name="document" class="form-control" placeholder="Buscar por cédula" value="{{ $searchIncident }}">
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </form>
+
+            <table class="table table-bordered table-with-break-word">
+                <thead>
                 <tr class="active">
-                    <th>Titulo</th>
+                    <th class="col-sm-2">Titulo</th>
                     <th>Descripción</th>
-                    <th>Estado</th>
-                    <th>Cliente</th>
-                    <th>Cédula</th>
-                    <th>Opción</th>
+                    <th class="col-sm-2">Estado</th>
+                    <th class="col-sm-2">Cliente</th>
+                    <th class="col-sm-2">Cédula</th>
+                    <th class="col-sm-1">Opción</th>
                 </tr>
-            </thead>
-            <tbody>
-                    @foreach ($incidents as $incident)
-                        <tr>
-                            <td>{{ $incident->title }}</td>
-                            <td>{{ $incident->description }}</td>
-                            <td>{{ $incident->state }}</td>
-                            <td>{{ $incident->client->name }}</td>
-                            <td>{{ $incident->client->document }}</td>
-                            <td>
-                                <a href="/incidencia/{{ $incident->id }}" class="btn btn-xs btn-info">
-                                    <i class="glyphicon glyphicon-zoom-in"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach ($incidents as $incident)
+                    <tr>
+                        <td>{{ $incident->title }}</td>
+                        <td>{{ $incident->description }}</td>
+                        <td>{{ $incident->state }}</td>
+                        <td>{{ $incident->client->name }}</td>
+                        <td>{{ $incident->client->document }}</td>
+                        <td>
+                            <a href="/incidencia/{{ $incident->id }}" class="btn btn-xs btn-info">
+                                <i class="glyphicon glyphicon-zoom-in"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
             {{ $incidents->links() }}
     </div>
 </div>

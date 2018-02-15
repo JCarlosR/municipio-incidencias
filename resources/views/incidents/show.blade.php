@@ -46,10 +46,10 @@
             </tbody>
         </table>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered table-with-break-word">
             <tbody>
                 <tr>
-                    <th>Título</th>
+                    <th class="col-sm-3">Título</th>
                     <td id="incident_summary">{{ $incident->title }}</td>
                 </tr>
                 <tr>

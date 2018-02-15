@@ -16,6 +16,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/fondo_edit.css') }}">
     @yield('styles')
 
+    <style>
+        .table-with-break-word {
+            table-layout: fixed; width: 100%;
+            word-wrap: break-word
+        }
+    </style>
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -109,7 +115,6 @@
       crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
-
 
     <!-- Upload image profile -->
     <script type="text/javascript" src="{{ asset('js/image-profile.js') }}"></script>

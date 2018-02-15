@@ -65,11 +65,10 @@ class User extends Authenticatable
     }
     public function getIsSupportLevelOneAttribute()
     {
-        $level_uno = ProjectUser::where('project_id', $this->selected_project_id)
-                ->where('level_id', 1)->where('user_id', $this->id)->exists();
-        if($this->role == 1 and $level_uno)
-            return true;
-        return false;
+        $first = Level::where('project_id', $this->selected_project_id)->orderBy('id', 'asc')->first();
+        $exists_level = ProjectUser::where('project_id', $this->selected_project_id)
+                ->where('level_id', $first->id)->where('user_id', $this->id)->exists();
+        return ($this->role == 1 and $exists_level);
     }
 
 }
