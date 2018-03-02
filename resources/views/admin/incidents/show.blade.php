@@ -49,8 +49,8 @@
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <th>Título</th>
-                    <td id="incident_summary">{{ $incident->title }}</td>
+                    <th>Cliente</th>
+                    <td id="incident_summary">{{ $incident->client->name }}</td>
                 </tr>
                 <tr>
                     <th>Descripción</th>

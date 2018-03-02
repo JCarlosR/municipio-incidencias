@@ -14,7 +14,7 @@
                 </ul>
             </div>
         @endif
-
+        @if(auth()->user()->id == $incident->creator_id && $incident->level_id == $first->id && $incident->support_id == NULL)
         <form action="" method="POST">
             {{ csrf_field() }}
             
@@ -40,10 +40,6 @@
                 <input type="text" name="document" class="form-control" value="{{ old('document', $incident->client->document) }}" disabled>
             </div>
             <div class="form-group">
-                <label for="title">Título</label>
-                <input type="text" name="title" class="form-control" value="{{ old('title', $incident->title) }}">
-            </div>
-            <div class="form-group">
                 <label for="description">Descripción</label>
                 <textarea name="description" class="form-control">{{ old('description', $incident->description) }}</textarea>
             </div>
@@ -51,7 +47,11 @@
                 <button class="btn btn-primary">Guardar cambios</button>
             </div>
         </form>
-
+        @else
+            <div class="alert alert-dismissible alert-info">
+                La incidencia está siendo <strong>atendida</strong>, por lo que no podrá ser editada.
+            </div>
+        @endif
     </div>
 </div>
 @endsection

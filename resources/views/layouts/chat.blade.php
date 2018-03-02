@@ -25,6 +25,10 @@
                             {{ $message->message }}
                             <br>
                             <small class="text-muted">{{ $message->user->name }} | {{ $message->created_at }}</small>
+                            @if($message->is_sms)
+                                <br>
+                                <small  class="text-muted">Enviado como SMS</small>
+                            @endif
                             <hr>
                         </div>
                     </div>
@@ -39,6 +43,12 @@
         <form action="/mensajes" method="POST">
             {{ csrf_field() }}
             <input type="hidden" name="incident_id" value="{{ $incident->id }}">
+            @if(auth()->user()->is_support)
+            <label>
+                <input type="checkbox" name="is_sms" @if($incident->client->cellphone == NULL) disabled @endif>
+                <small @if($incident->client->cellphone == NULL) class="text-muted" title="No se ha registrado el celular de este cliente" @endif>Enviar por SMS</small>
+            </label>
+            @endif
             <div class="input-group">
                 <input type="text" class="form-control" name="message">
                 <span class="input-group-btn">

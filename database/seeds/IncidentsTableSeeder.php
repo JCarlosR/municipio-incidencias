@@ -11,7 +11,6 @@ class IncidentsTableSeeder extends Seeder
     {
 
         $incident = Incident::create([
-        	'title' => 'Primera incidencia',
         	'description' => 'Lo que ocurre es que se encontró un problema en la página y esta se cerró.',
         	'severity' => 'N',
         	'category_id' => 2,

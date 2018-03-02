@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Incident;
 use App\ProjectUser;
+use Illuminate\Validation\Rules\In;
 
 class HomeController extends Controller
 {
@@ -38,13 +39,16 @@ class HomeController extends Controller
 
             $incidents_by_me = Incident::where('creator_id', $user->id)
                                         ->where('project_id', $selected_project_id)->get();
+
+            $incidents_client = Incident::where('client_id', $user->id)
+                ->where('project_id', $selected_project_id)->where('active', 1)->get();
         } else {
             $my_incidents = [];
             $pending_incidents = [];
             $incidents_by_me = [];
         }
 
-        return view('home')->with(compact('my_incidents', 'pending_incidents', 'incidents_by_me'));
+        return view('home')->with(compact('my_incidents', 'pending_incidents', 'incidents_by_me', 'incidents_client'));
     }
 
     public function selectProject($id)

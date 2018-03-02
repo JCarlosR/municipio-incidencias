@@ -34,8 +34,9 @@ Route::group(['middleware' => 'auth', 'namespace' => 'User'], function (){
 
 Route::group(['middleware' => 'support', 'namespace' => 'Support'], function (){
 //clients
-    Route::get('/cliente', 'ClientController@create');
-    Route::post('/cliente', 'ClientController@store');
+    Route::get('/cliente', 'ClientController@index');
+    Route::get('/cliente/crear', 'ClientController@create');
+    Route::post('/cliente/crear', 'ClientController@store');
     Route::get('/cliente/{id}', 'ClientController@edit');
     Route::post('/cliente/{id}', 'ClientController@update');
 

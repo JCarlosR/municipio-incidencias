@@ -36,7 +36,7 @@
 
 				@if (auth()->user()->is_support)
 					<li @if(request()->is('cliente')) class="active" @endif>
-						<a href="/cliente">Registrar cliente</a>
+						<a href="/cliente">Lista de clientes</a>
 					</li>
 				@endif
 

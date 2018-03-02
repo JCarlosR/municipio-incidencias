@@ -46,7 +46,6 @@
             <table class="table table-bordered table-with-break-word">
                 <thead>
                 <tr class="active">
-                    <th class="col-sm-2">Titulo</th>
                     <th>Descripción</th>
                     <th class="col-sm-2">Estado</th>
                     <th class="col-sm-2">Cliente</th>
@@ -57,7 +56,6 @@
                 <tbody>
                 @foreach ($incidents as $incident)
                     <tr>
-                        <td>{{ $incident->title }}</td>
                         <td>{{ $incident->description }}</td>
                         <td>{{ $incident->state }}</td>
                         <td>{{ $incident->client->name }}</td>

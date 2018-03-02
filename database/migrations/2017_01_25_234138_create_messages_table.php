@@ -24,6 +24,8 @@ class CreateMessagesTable extends Migration
 
             $table->string('message');
 
+            $table->boolean('is_sms');
+
             $table->timestamps();
         });
     }

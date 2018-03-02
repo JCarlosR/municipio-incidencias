@@ -10,4 +10,14 @@ class Message extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    public function incident()
+    {
+        return $this->belongsTo('App\Incident');
+    }
+
+    public function getMessageCompleteAttribute()
+    {
+        return $this->message.' '.$this->created_at;
+    }
 }

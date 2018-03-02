@@ -10,16 +10,13 @@ class Incident extends Model
     public static $rules = [
         'category_id' => 'sometimes|exists:categories,id',
         'severity' => 'required|in:M,N,A',
-        'title' => 'required|min:5',
         'document' => 'exists:users,document',
         'description' => 'required|min:15'
     ];
 
     public static $messages = [
         'category_id.exists' => 'La categoría seleccionada no existe en nuestra base de datos.',
-        'title.required' => 'Es necesario ingresar un título para la incidencia.',
-        'title.min' => 'El título debe presentar al menos 5 caracteres.',
-        'document.exists' => 'La cédula ingresada no se encuentra registrada',
+        'document.exists' => 'La cédula ingresada no se encuentra registrada. Registre al nuevo cliente en el botón inferior.',
         'description.required' => 'Es necesario ingresar una descripción para la incidencia.',
         'description.min' => 'La descripción debe presentar al menos 15 caracteres.'
     ];
@@ -46,6 +43,11 @@ class Incident extends Model
     public function support()
     {
         return $this->belongsTo('App\User', 'support_id');
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo('App\User', 'creator_id');
     }
 
     public function client()

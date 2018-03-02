@@ -32,7 +32,7 @@ class IncidentController extends Controller
         $take_incident = Incident::where('id', $id)->where('support_id', $user->id)
                     ->where('project_id', $project_id)->whereIn('level_id', [$first->id, $last->id])->exists();
         $messages = $incident->messages;
-        return view('incidents.show')->with(compact('incident', 'messages', 'incident_histories', 'take_incident'));
+        return view('incidents.show')->with(compact('incident', 'messages', 'incident_histories', 'take_incident', 'first'));
     }
 
     public function create() 
@@ -52,7 +52,6 @@ class IncidentController extends Controller
         $incident = new Incident();
         $incident->category_id = $request->input('category_id') ?: null;
         $incident->severity = $request->input('severity');
-        $incident->title = $request->input('title');
         $incident->description = $request->input('description');
 
         $user = auth()->user();
@@ -103,9 +102,12 @@ class IncidentController extends Controller
     public function edit($id)
     {
         $incident = Incident::findOrFail($id);
+        $user = auth()->user();
+        $project_id = $user->selected_project_id;
+        $first = Level::where('project_id', $project_id)->get()->first();
         $categories = $incident->project->categories;
         $clients = User::where('role', 2)->get();
-        return view('incidents.edit')->with(compact('incident', 'categories','clients'));
+        return view('incidents.edit')->with(compact('incident', 'categories','clients','first'));
     }
 
     public function update(Request $request, $id)
@@ -113,22 +115,29 @@ class IncidentController extends Controller
         $this->validate($request, Incident::$rules, Incident::$messages);
 
         $incident = Incident::findOrFail($id);
+        $user = auth()->user();
+        $project_id = $user->selected_project_id;
+        $first = Level::where('project_id', $project_id)->get()->first();
 
-        $incident->category_id = $request->input('category_id') ?: null;
-        $incident->severity = $request->input('severity');
-        $incident->title = $request->input('title');
-        $incident->description = $request->input('description');
+        if ($user->id == $incident->creator_id && $incident->level_id == $first->id && $incident->support_id == NULL) {
 
-        $incident->save();
+            $incident->category_id = $request->input('category_id') ?: null;
+            $incident->severity = $request->input('severity');
+            $incident->description = $request->input('description');
 
-        $user_id = auth()->id();
-        $history = new IncidentChange();
-        $history->type = 'edit';
-        $history->incident_id = $incident->id;
-        $history->user_id = $user_id;
-        $history->save();
+            $incident->save();
 
-        return redirect("/ver/$id");        
+            $user_id = auth()->id();
+            $history = new IncidentChange();
+            $history->type = 'edit';
+            $history->incident_id = $incident->id;
+            $history->user_id = $user_id;
+            $history->save();
+
+            return redirect("/ver/$id");
+        }else{
+            return redirect("/incidencia/$incident->id/editar");
+        }
     }
 
     public function take($id)
@@ -248,4 +257,5 @@ class IncidentController extends Controller
 
         return $levels[$position+1]->id;
     }
+
 }

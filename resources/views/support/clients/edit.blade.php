@@ -25,33 +25,34 @@
             {{ csrf_field() }}
             <label>Datos personales</label>
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" name="name" class="form-control" value="{{ old('name', $client->name) }}">
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label for="cellphone">Celular</label>
-                        <input type="number" name="cellphone" class="form-control" value="{{ old('cellphone', $client->cellphone) }}">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" name="email" class="form-control" value="{{ old('email', $client->email) }}">
-            </div>
-            <div class="form-group">
-                <label for="address">Dirección</label>
-                <input type="text" name="address" class="form-control" value="{{ old('address', $client->address) }}">
-            </div>
-            <label>Datos de la cuenta</label>
-            <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="document">Cédula</label>
                         <input type="text" name="document" class="form-control" value="{{ old('document', $client->document) }}" disabled>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" class="form-control" value="{{ old('email', $client->email) }}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="address">Dirección</label>
+                        <input type="text" name="address" class="form-control" value="{{ old('address', $client->address) }}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="cellphone">Celular</label>
+                        <input type="number" name="cellphone" class="form-control" value="{{ old('cellphone', $client->cellphone) }}">
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -62,7 +63,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Guardar usuario</button>
+                <button class="btn btn-success">Guardar usuario</button>
+                <a href="/cliente" class="btn btn-default" title="Volver">Volver</a>
             </div>
         </form>
 

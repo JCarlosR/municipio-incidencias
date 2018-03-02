@@ -19,17 +19,17 @@ class IncidentChange extends Model
     public function getDescriptionAttribute()
     {
         if ($this->type == 'registry')
-            return 'La incidencia se registró';
+            return 'La incidencia fue registrada por '.$this->user->name;
         if ($this->type == 'edit')
-            return 'La incidencia se editó';
+            return 'La incidencia fue editada por '.$this->user->name;
         if ($this->type == 'attention')
             return 'La incidencia fue atendida por '.$this->user->name;
         if ($this->type == 'derive')
-            return 'La incidencia se derivó';
+            return 'La incidencia fue derivada por '.$this->user->name;
         if ($this->type == 'resolved')
-            return 'La incidencia se resolvió';
+            return 'La incidencia fue resuelta por '.$this->user->name;
         if ($this->type == 'open')
-            return 'La incidencia se abrió';
+            return 'La incidencia fue reabierta por '.$this->user->name;
     }
 
 }

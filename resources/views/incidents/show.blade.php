@@ -49,8 +49,8 @@
         <table class="table table-bordered table-with-break-word">
             <tbody>
                 <tr>
-                    <th class="col-sm-3">Título</th>
-                    <td id="incident_summary">{{ $incident->title }}</td>
+                    <th class="col-sm-3">Cliente</th>
+                    <td id="incident_summary">{{ $incident->client->name }}</td>
                 </tr>
                 <tr>
                     <th>Descripción</th>
@@ -76,16 +76,16 @@
                         Marcar como resuelto
                     </a>
                 @endif
-                @if (auth()->user()->id == $incident->creator_id)
+                @if (auth()->user()->id == $incident->creator_id && $incident->level_id == $first->id && $incident->support_id == NULL)
                     <a href="/incidencia/{{ $incident->id }}/editar" class="btn btn-success btn-sm" id="incident_btn_edit">
                         Editar incidencia
                     </a>
                 @endif
             @else
                 @if($take_incident)
-                    <a href="/incidencia/{{ $incident->id }}/abrir" class="btn btn-info btn-sm" id="incident_btn_open">
-                        Volver a abrir incidencia
-                    </a>
+                    {{--<a href="/incidencia/{{ $incident->id }}/abrir" class="btn btn-info btn-sm" id="incident_btn_open">--}}
+                        {{--Volver a abrir incidencia--}}
+                    {{--</a>--}}
                 @endif
             @endif
 
